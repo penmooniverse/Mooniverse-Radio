@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mooniverse Admin Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: #000;
+      font-family: 'Orbitron', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-white">
+  <div class="bg-white/10 p-10 rounded-xl w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center text-cyan-400">🚀 Admin Login</h2>
+    <input id="username" type="text" placeholder="Tên đăng nhập" class="w-full mb-4 p-2 rounded bg-white/10 border border-cyan-500 text-white" />
+    <input id="password" type="password" placeholder="Mật khẩu" class="w-full mb-4 p-2 rounded bg-white/10 border border-cyan-500 text-white" />
+    <button onclick="login()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2 px-6 rounded-full">Đăng nhập</button>
+    <p id="errorMsg" class="text-red-400 mt-4 hidden">❌ Sai tên đăng nhập hoặc mật khẩu!</p>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === 'astromooniverse' && pass === 'happyastro') {
+        window.location.href = 'admin.html';
+      } else {
+        document.getElementById('errorMsg').classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

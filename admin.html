@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mooniverse Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-3xl mb-6 font-bold text-center text-cyan-400">🚀 Mooniverse Radio Admin</h1>
+  <form id="uploadForm" class="max-w-xl mx-auto bg-white/10 p-6 rounded-xl">
+    <label class="block mb-2 font-bold">Tên tập:</label>
+    <input type="text" id="title" class="w-full p-2 mb-4 rounded bg-white/10 border border-cyan-500 text-white" placeholder="🎙️ Tập 5: ..." />
+
+    <label class="block mb-2 font-bold">Google Drive ID:</label>
+    <input type="text" id="id" class="w-full p-2 mb-4 rounded bg-white/10 border border-cyan-500 text-white" placeholder="ID từ link Drive" />
+
+    <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2 px-6 rounded-full">Tạo dòng code</button>
+  </form>
+
+  <div class="max-w-xl mx-auto mt-8 bg-green-600/20 p-4 rounded text-green-300 hidden" id="successMessage">
+    ✅ Copy đoạn sau để thêm vào <code>episodes.js</code>:
+    <pre id="generatedCode" class="bg-white/10 p-2 mt-2 rounded text-green-100 text-sm"></pre>
+  </div>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const successBox = document.getElementById("successMessage");
+    const generatedCode = document.getElementById("generatedCode");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value.trim();
+      const id = document.getElementById("id").value.trim();
+
+      if (!title || !id) {
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return;
+      }
+
+      const snippet = `  {\n    title: \"${title}\",\n    id: \"${id}\"\n  },`;
+      generatedCode.innerText = snippet;
+      successBox.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>

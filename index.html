@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mooniverse Radio Station</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="episodes.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      padding: 2rem;
+    }
+    .episode-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .episode-card h3 {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-4xl mb-6 font-bold text-cyan-400 text-center">🚀 Mooniverse Radio Station</h1>
+  <div id="episodeList" class="space-y-4"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('episodeList');
+      if (typeof episodes === 'undefined') {
+        container.innerHTML = '<p class="text-red-400">⚠️ Không load được danh sách tập. Vui lòng kiểm tra file episodes.js!</p>';
+        return;
+      }
+      episodes.forEach(ep => {
+        const html = \`
+          <div class="episode-card">
+            <h3>\${ep.title}</h3>
+            <audio controls class="w-full mt-2">
+              <source src="https://docs.google.com/uc?export=download&id=\${ep.id}" type="audio/mp3" />
+            </audio>
+          </div>
+        \`;
+        container.innerHTML += html;
+      });
+    });
+  </script>
+</body>
+</html>
